@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -9,21 +8,26 @@
  */
 int main(void)
 {
-	char seed[53] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char password[15];
-	int i, n, passw, complem;
+	int pass[100];
+	int i, sum, x;
 
-	srand(time(0));
+	sum = 0;
 
-	for (i = 0; passw < 2772; i++)
+	srand(time(NULL));
+
+	for (i = 0; i < 100; i++)
 	{
-		n = rand() % 10;
-		password[i] = seed[n];
-		passw += password[i];
+		pass[i] = rand() % 78;
+		sum += (pass[i] + '0');
+		putchar(pass[i] + '0');
+		if ((2772 - sum) - '0' < 78)
+		{
+			x = 2772 - sum - '0';
+			sum += x;
+			putchar(x + '0');
+			break;
+		}
 	}
 
-	complem = 2772 - passw;
-	password[i] = complem;
-	printf("%s\n",  password);
 	return (0);
 }
